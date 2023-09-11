@@ -17,12 +17,12 @@ class _LoginAppState extends State<LoginApp> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.network('https://rmemanagement.online/storage/logo/logo.png'),
-            // Image(
-            //   image: NetworkImage(
-            //       'https://rmemanagement.online/storage/logo/logo.png'),
-            //   width: 150,
-            // ),
+            // Image.network('https://rmemanagement.online/storage/logo/logo.png'),
+            Image(
+              image: NetworkImage(
+                  'https://rmemanagement.online/storage/logo/logo.png'),
+              width: 150,
+            ),
             SizedBox(
               height: 50,
             ),

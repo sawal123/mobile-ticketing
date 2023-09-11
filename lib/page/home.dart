@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   ClipOval(
                     child: Image.network(
-                      'https://cdn.idntimes.com/content-images/community/2019/07/pexels-photo-1479139-644db79f0c2c903601dfc29d53a032d1_600x400.jpeg',
+                      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80',
                       width: 50,
                       height: 50,
                       fit: BoxFit.cover,
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               //  ======================================
-              // ListApp(),
+              ListApp(),
               // =========================================
               const SizedBox(
                 height: 10,
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(10),
                   child: Image(
                     image: const NetworkImage(
-                        'https://swamediainc.storage.googleapis.com/swa.co.id/wp-content/uploads/2022/08/11203956/GoFood_Tokopedia.jpg'),
+                        'https://images.unsplash.com/photo-1682687982029-edb9aecf5f89?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80'),
                     width: widhtDevice,
                     height: heighDevice,
                     fit: BoxFit.cover,
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(5),
                         child: const Image(
                           image: NetworkImage(
-                              'https://img.freepik.com/premium-photo/illustration-computer-with-purple-background-digital-display-space-ship_579873-1722.jpg?w=740'),
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_e_0PaYN_oXzPZfmNOEmv2djHtb3tgoVQo4-n4K6uJ0mpsmO5jWQSE4Q964SElE901QM&usqp=CAU'),
                         ),
                       ), // Ikon di sebelah kiri teks
                       title: const Text('Transaksi'),
@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                             Image(
                               image: const NetworkImage(
                                   'https://img.icons8.com/?size=512&id=RmfeOvor7w73&format=png'),
-                              width: widhtDevice / 5,
+                              width: widhtDevice / 7,
                             ),
                             const Text(
                               'Scan Barcode',
@@ -181,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                             Image(
                               image: const NetworkImage(
                                   'https://img.icons8.com/?size=512&id=80046&format=png'),
-                              width: widhtDevice / 5,
+                              width: widhtDevice / 7,
                             ),
                             const Text(
                               'Input Code',

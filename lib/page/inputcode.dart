@@ -26,7 +26,7 @@ class _InputCodeState extends State<InputCode> {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 30,
                 ),
                 TextField(
                   // controller: _textController,
