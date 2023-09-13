@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:barcode_scan2/barcode_scan2.dart';
-import 'package:ticketing/api.dart';
+// import 'package:ticketing/api.dart';
 import 'package:ticketing/widget/listView.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,12 +11,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final apiService = ApiService();
+  // final apiService = ApiService();
   @override
   Widget build(BuildContext context) {
     final widhtDevice = MediaQuery.of(context).size.width;
     final heighDevice = MediaQuery.of(context).size.height;
-    print(apiService);
+    // print(apiService);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(padding: EdgeInsets.only(top: 15)),
@@ -110,9 +110,9 @@ class _HomePageState extends State<HomePage> {
                     child: ListTile(
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
-                        child: const Image(
+                        child: Image(
                           image: NetworkImage(
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_e_0PaYN_oXzPZfmNOEmv2djHtb3tgoVQo4-n4K6uJ0mpsmO5jWQSE4Q964SElE901QM&usqp=CAU'),
+                              'https://robohash.org/hicveldicta.png'),
                         ),
                       ), // Ikon di sebelah kiri teks
                       title: const Text('Transaksi'),

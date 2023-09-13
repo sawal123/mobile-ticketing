@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class ListApp extends StatefulWidget {
-  const ListApp({super.key});
+class MyList extends StatefulWidget {
+  const MyList({super.key});
 
   @override
-  State<ListApp> createState() => _ListAppState();
+  State<MyList> createState() => _MyListState();
 }
 
-class _ListAppState extends State<ListApp> {
+class _MyListState extends State<MyList> {
   List data = [];
 
   @override
@@ -24,7 +24,7 @@ class _ListAppState extends State<ListApp> {
     try {
       var myResponse =
           await http.get(Uri.parse("https://rmemanagement.online/api/slide"));
-      print(myResponse.body);
+      // print(myResponse.body);
       if (myResponse.statusCode == 200) {
         final dynamic dataRespon = jsonDecode(myResponse.body);
         if (dataRespon is Map<dynamic, dynamic>) {
@@ -95,3 +95,5 @@ class _ListAppState extends State<ListApp> {
     );
   }
 }
+
+

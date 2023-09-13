@@ -1,9 +1,6 @@
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-// import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 class ListApp extends StatefulWidget {
   const ListApp({super.key});
