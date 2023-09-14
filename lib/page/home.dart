@@ -31,10 +31,11 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   ClipOval(
                     child: Image.network(
-                      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80',
+                      'https://robohash.org/hicveldicta.png',
                       width: 50,
                       height: 50,
                       fit: BoxFit.cover,
+                      // key: const Key('unique-key'),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -78,13 +79,13 @@ class _HomePageState extends State<HomePage> {
                 width: widhtDevice,
                 height: 100,
                 decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 234, 5, 55),
+                    color: Color.fromARGB(255, 234, 5, 55),
                     borderRadius: BorderRadius.circular(10)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image(
-                    image: const NetworkImage(
-                        'https://images.unsplash.com/photo-1682687982029-edb9aecf5f89?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80'),
+                    image: NetworkImage(
+                        'https://rmemanagement.online/storage/cover/EIKtsB1B850TG3el_1694190840_880cac8eeb54a5e128c3887292464f66c371c97b.png.webp'),
                     width: widhtDevice,
                     height: heighDevice,
                     fit: BoxFit.cover,
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(5),
                         child: Image(
                           image: NetworkImage(
-                              'https://robohash.org/hicveldicta.png'),
+                              'https://rmemanagement.online/storage/logo/logo.png'),
                         ),
                       ), // Ikon di sebelah kiri teks
                       title: const Text('Transaksi'),
@@ -149,8 +150,8 @@ class _HomePageState extends State<HomePage> {
                               height: 10,
                             ),
                             Image(
-                              image: const NetworkImage(
-                                  'https://img.icons8.com/?size=512&id=RmfeOvor7w73&format=png'),
+                              image: NetworkImage(
+                                  'https://rmemanagement.online/storage/logo/logo.png'),
                               width: widhtDevice / 7,
                             ),
                             const Text(
@@ -179,11 +180,11 @@ class _HomePageState extends State<HomePage> {
                               height: 10,
                             ),
                             Image(
-                              image: const NetworkImage(
-                                  'https://img.icons8.com/?size=512&id=80046&format=png'),
+                              image: NetworkImage(
+                                  'https://rmemanagement.online/storage/logo/logo.png'),
                               width: widhtDevice / 7,
                             ),
-                            const Text(
+                            Text(
                               'Input Code',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             )

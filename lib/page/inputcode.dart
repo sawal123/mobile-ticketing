@@ -8,6 +8,8 @@ class InputCode extends StatefulWidget {
 }
 
 class _InputCodeState extends State<InputCode> {
+  String url = '';
+  String _value = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +31,13 @@ class _InputCodeState extends State<InputCode> {
                   height: 30,
                 ),
                 TextField(
-                  // controller: _textController,
+                  onChanged: (value) {
+                    setState(() {
+                      _value = value;
+                    });
+                    // print(_value);
+                  },
+                  // controller: _textController,t
                   decoration: InputDecoration(
                     labelText: 'Masukan Code',
                     border: OutlineInputBorder(),
@@ -39,7 +47,14 @@ class _InputCodeState extends State<InputCode> {
                   widthFactor: 1,
                   child: ElevatedButton(
                       onPressed: () {
-                        //
+                        Navigator.pushNamed(context, '/confirm',
+                            arguments: _value);
+
+                        setState(() {
+                          url = 'https://rmemanagement.online/api/confirm/' +
+                              _value;
+                        });
+                        print(url);
                       },
                       style: ElevatedButton.styleFrom(
                           // minimumSize: Size(, 40),

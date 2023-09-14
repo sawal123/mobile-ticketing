@@ -22,9 +22,8 @@ class _LoginAppState extends State<LoginApp> {
               const SizedBox(
                 height: 150,
               ),
-              const Image(
-                image: NetworkImage(
-                    'https://rmemanagement.online/storage/logo/logo.png'),
+              Image(
+                image: NetworkImage('https://robohash.org/hicveldicta.png'),
                 width: 150,
               ),
               SizedBox(

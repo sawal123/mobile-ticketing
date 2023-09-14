@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:ticketing/particle/baseUrl.dart';
 
 class ListApp extends StatefulWidget {
   const ListApp({super.key});
@@ -19,9 +20,10 @@ class _ListAppState extends State<ListApp> {
   }
 
   Future<void> getData() async {
+    var urlBase = BaseUrl().baseUrl;
+    print(urlBase);
     try {
-      var myResponse =
-          await http.get(Uri.parse("https://rmemanagement.online/api/slide"));
+      var myResponse = await http.get(Uri.parse("$urlBase/slide"));
       // print(myResponse.body);
       if (myResponse.statusCode == 200) {
         final dynamic dataRespon = jsonDecode(myResponse.body);
@@ -60,7 +62,7 @@ class _ListAppState extends State<ListApp> {
                 itemCount: data.length,
                 itemBuilder: (context, index) {
                   final dataSlide = data[index];
-                  print(dataSlide);
+                  // print(dataSlide);
                   return Container(
                       margin: EdgeInsets.only(right: 5),
                       height: heighDevice,

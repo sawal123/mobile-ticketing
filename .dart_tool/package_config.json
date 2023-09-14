@@ -236,6 +236,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "nested",
+      "rootUri": "file:///C:/Users/ERA%20DIGITAL/AppData/Local/Pub/Cache/hosted/pub.dev/nested-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "node_preamble",
       "rootUri": "file:///C:/Users/ERA%20DIGITAL/AppData/Local/Pub/Cache/hosted/pub.dev/node_preamble-2.0.2",
       "packageUri": "lib/",
@@ -280,6 +286,12 @@
     {
       "name": "protobuf",
       "rootUri": "file:///C:/Users/ERA%20DIGITAL/AppData/Local/Pub/Cache/hosted/pub.dev/protobuf-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///C:/Users/ERA%20DIGITAL/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -464,7 +476,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-09-13T14:00:26.664049Z",
+  "generated": "2023-09-14T13:50:49.420564Z",
   "generator": "pub",
   "generatorVersion": "3.1.1"
 }

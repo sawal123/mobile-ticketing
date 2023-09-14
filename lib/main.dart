@@ -3,6 +3,7 @@ import 'package:ticketing/page/home.dart';
 import 'package:ticketing/page/inputcode.dart';
 import 'package:ticketing/page/login.dart';
 import 'package:ticketing/page/scanbarcode.dart';
+import 'package:ticketing/page/confirm.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(),
         '/input': (context) => InputCode(),
         '/scan': (context) => QRViewExample(),
+        '/confirm': (context) => MyConfirm(),
       },
     );
   }
