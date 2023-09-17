@@ -7,10 +7,14 @@ class PasswordToggleInput extends StatefulWidget {
 
 class _PasswordToggleInputState extends State<PasswordToggleInput> {
   bool _obscureText = true;
+  final passwordController = TextEditingController();
+
+  
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: passwordController,
       obscureText:
           _obscureText, // Ini mengatur apakah teks tersembunyi atau tidak
       decoration: InputDecoration(

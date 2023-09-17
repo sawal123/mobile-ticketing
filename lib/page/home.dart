@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:barcode_scan2/barcode_scan2.dart';
 // import 'package:ticketing/api.dart';
 import 'package:ticketing/widget/listView.dart';
+import 'package:ticketing/particle/baseUrl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final widhtDevice = MediaQuery.of(context).size.width;
     final heighDevice = MediaQuery.of(context).size.height;
+    final storage = BaseUrl().sUrl;
     // print(apiService);
     return Scaffold(
       body: SingleChildScrollView(
@@ -30,14 +32,11 @@ class _HomePageState extends State<HomePage> {
               Row(
                 children: [
                   ClipOval(
-                    child: Image.network(
-                      'https://robohash.org/hicveldicta.png',
-                      width: 50,
-                      height: 50,
-                      fit: BoxFit.cover,
-                      // key: const Key('unique-key'),
-                    ),
-                  ),
+                      child: Image.asset(
+                    'assets/images/avatar.png',
+                    width: 50,
+                    fit: BoxFit.cover,
+                  )),
                   const SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +84,8 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(10),
                   child: Image(
                     image: NetworkImage(
-                        'https://rmemanagement.online/storage/cover/EIKtsB1B850TG3el_1694190840_880cac8eeb54a5e128c3887292464f66c371c97b.png.webp'),
+                        // '$storage/cover/EIKtsB1B850TG3el_1694190840_880cac8eeb54a5e128c3887292464f66c371c97b.png.webp'),
+                        '$storage/cover/_1693572896_880cac8eeb54a5e128c3887292464f66c371c97b.png.webp'),
                     width: widhtDevice,
                     height: heighDevice,
                     fit: BoxFit.cover,
@@ -107,19 +107,24 @@ class _HomePageState extends State<HomePage> {
               ),
               Column(
                 children: [
-                  Card(
-                    child: ListTile(
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: Image(
-                          image: NetworkImage(
-                              'https://rmemanagement.online/storage/logo/logo.png'),
-                        ),
-                      ), // Ikon di sebelah kiri teks
-                      title: const Text('Transaksi'),
-                      subtitle: const Text('Lihat Data Tervervikasi'),
-                      trailing: const Icon(
-                          Icons.arrow_forward), // Ikon di sebelah kanan teks
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/list');
+                    },
+                    child: Card(
+                      child: ListTile(
+                        leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: Image.asset(
+                              'assets/images/list.png',
+                              width: 40,
+                            )), // Ikon di sebelah kiri teks
+                        title: const Text('LIST PESERTA'),
+                        subtitle:
+                            const Text('Peserta Yang Sudah Di Verifikasi'),
+                        trailing: const Icon(
+                            Icons.arrow_forward), // Ikon di sebelah kanan teks
+                      ),
                     ),
                   ),
                 ],
@@ -128,17 +133,18 @@ class _HomePageState extends State<HomePage> {
                 height: 10,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, '/scan');
                       },
                       child: Container(
-                        width: widhtDevice / 2.5,
-                        height: heighDevice / 5,
+                        // alignment: Alignment.center,
+                        width: widhtDevice / 3,
+                        // height: heighDevice / 5,
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -150,8 +156,7 @@ class _HomePageState extends State<HomePage> {
                               height: 10,
                             ),
                             Image(
-                              image: NetworkImage(
-                                  'https://rmemanagement.online/storage/logo/logo.png'),
+                              image: AssetImage('assets/images/scan.png'),
                               width: widhtDevice / 7,
                             ),
                             const Text(
@@ -167,8 +172,8 @@ class _HomePageState extends State<HomePage> {
                         Navigator.pushNamed(context, '/input');
                       },
                       child: Container(
-                        width: widhtDevice / 2.5,
-                        height: heighDevice / 5,
+                        width: widhtDevice / 3,
+                        // height: heighDevice / 5,
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -180,8 +185,7 @@ class _HomePageState extends State<HomePage> {
                               height: 10,
                             ),
                             Image(
-                              image: NetworkImage(
-                                  'https://rmemanagement.online/storage/logo/logo.png'),
+                              image: AssetImage('assets/images/input.png'),
                               width: widhtDevice / 7,
                             ),
                             Text(

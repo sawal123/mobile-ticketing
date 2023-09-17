@@ -1,13 +1,18 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:ticketing/particle/baseUrl.dart';
 // import 'package:provider/provider.dart';
 
 import 'package:ticketing/particle/widhtAndHeight.dart';
 import 'package:http/http.dart' as http;
 
 class MyConfirm extends StatefulWidget {
-  const MyConfirm({super.key});
+  const MyConfirm({
+    super.key,
+  });
+  // final String data;
+  // MyConfirm({required this.data});
 
   @override
   State<MyConfirm> createState() => _MyConfirmState();
@@ -39,9 +44,16 @@ class _MyConfirmState extends State<MyConfirm> {
   }
 
   Widget build(BuildContext context) {
+    final String argument =
+        ModalRoute.of(context)?.settings.arguments as String;
+    var urlBase = BaseUrl().baseUrl;
     final String? valueFromFirstPage =
         ModalRoute.of(context)?.settings.arguments as String?;
-    confirValue(valueFromFirstPage);
+    if (valueFromFirstPage == "") {
+      confirValue(argument);
+    } else {
+      confirValue(valueFromFirstPage);
+    }
 
     final TextStyle textStyle =
         TextStyle(fontSize: 18, fontWeight: FontWeight.w700);
@@ -171,7 +183,49 @@ class _MyConfirmState extends State<MyConfirm> {
                       Container(
                         width: width,
                         child: ElevatedButton(
-                            onPressed: () {}, child: Text('CONFIRM')),
+                            onPressed: () async {
+                              final Map<String, dynamic> data = {
+                                'konfirmasi': "1",
+                              };
+
+                              try {
+                                final inv = cart['invoice'];
+                                final String urlUpdate =
+                                    "$urlBase/status/" + inv;
+                                final responUpdate = await http.put(
+                                  Uri.parse(urlUpdate),
+                                  headers: {'Content-Type': 'application/json'},
+                                  body: jsonEncode(data),
+                                );
+                                if (responUpdate.statusCode == 200) {
+                                  print(
+                                      'Data berhasil diperbarui: ${responUpdate.body}');
+                                } else {
+                                  print('Gagal');
+                                }
+                              } catch (e) {
+                                print(e);
+                              }
+                              // Navigator.of(context).pop("$valueFromFirstPage");
+                              // Navigator.pushReplacement(context, '/confirm',
+                              //     arguments: "$valueFromFirstPage");
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => MyConfirm(),
+                                  settings: RouteSettings(
+                                    arguments: valueFromFirstPage,
+                                  ),
+                                ),
+                              );
+                              // Navigator.of(context).pushReplacement(
+                              //   MaterialPageRoute(
+                              //     builder: (context) => MyConfirm(
+                              //       argument: "$valueFromFirstPage",
+                              //     ),
+                              //   ),
+                              // );
+                            },
+                            child: Text('CONFIRM')),
                       )
                     ],
                   );

@@ -55,42 +55,43 @@ class _ListAppState extends State<ListApp> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-            width: widhtDevice / 1.1,
-            height: 150,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  final dataSlide = data[index];
-                  // print(dataSlide);
-                  return Container(
-                      margin: EdgeInsets.only(right: 5),
-                      height: heighDevice,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 6, 139, 183),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          'https://rmemanagement.online/storage/slide/' +
-                              dataSlide['gambar'],
-                          loadingBuilder: (BuildContext context, Widget child,
-                              ImageChunkEvent? loadingProgress) {
-                            if (loadingProgress == null) {
-                              return child;
-                            } else {
-                              return CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes !=
-                                        null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes!
-                                    : null,
-                              );
-                            }
-                          },
-                        ),
-                      ));
-                })),
+          width: widhtDevice / 1.1,
+          height: 150,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final dataSlide = data[index];
+              // print(dataSlide);
+              return Container(
+                  margin: EdgeInsets.only(right: 5),
+                  height: heighDevice,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 6, 139, 183),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      'https://rmemanagement.online/storage/slide/' +
+                          dataSlide['gambar'],
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        } else {
+                          return CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                : null,
+                          );
+                        }
+                      },
+                    ),
+                  ));
+            },
+          ),
+        ),
       ],
     );
   }
