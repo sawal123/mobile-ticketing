@@ -9,6 +9,17 @@ class MyList extends StatefulWidget {
 }
 
 class _MyListState extends State<MyList> {
+  List<String> items = List.generate(20, (index) => 'Item $index');
+
+  Future<void> _refresh() async {
+    // Logika refresh di sini
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {
+      // Anda dapat memperbarui data di sini jika diperlukan
+      items = List.generate(20, (index) => 'Refreshed Item $index');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final lebar = Lebar();
@@ -52,42 +63,47 @@ class _MyListState extends State<MyList> {
             SizedBox(
               height: 10,
             ),
-            Column(
-              children: [
-                Container(
-                  width: width,
-                  height: heigth / 1.4,
-                  // padding: EdgeInsets.all(10),
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: 20,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            border: Border.all(color: Colors.black)),
-                        child: ListTile(
-                          // contentPadding: EdgeInsets.all(10),
-                          tileColor: Color.fromARGB(255, 235, 235, 235),
-                          leading: Container(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                    color: Colors.white, width: 2.0)),
-                            child: ClipOval(
-                                child: Image.asset('assets/images/avatar.png')),
+            RefreshIndicator(
+              onRefresh: _refresh,
+              child: Column(
+                children: [
+                  Container(
+                    width: width,
+                    height: heigth / 1.4,
+                    // padding: EdgeInsets.all(10),
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: 20,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin:
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              border: Border.all(color: Colors.black)),
+                          child: ListTile(
+                            // contentPadding: EdgeInsets.all(10),
+                            tileColor: Color.fromARGB(255, 235, 235, 235),
+                            leading: Container(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: Colors.white, width: 2.0)),
+                              child: ClipOval(
+                                  child:
+                                      Image.asset('assets/images/avatar.png')),
+                            ),
+                            title: Text('Sawal'),
+                            subtitle: Text('Sudah Tervikasi'),
+                            trailing: Icon(Icons.check_circle_outline_sharp),
                           ),
-                          title: Text('Sawal'),
-                          subtitle: Text('Sudah Tervikasi'),
-                          trailing: Icon(Icons.check_circle_outline_sharp),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(
               height: 30,

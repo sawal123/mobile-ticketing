@@ -33,9 +33,11 @@ class _LoginAppState extends State<LoginApp> {
       final data = json.decode(responLogin.body);
       final token = data['data']['token'];
       final name = data['data']['name'];
-      // print(name);
       final prefs = await SharedPreferences.getInstance();
+      print(name);
       prefs.setString('token', token);
+      prefs.setString('name', name);
+
       final storage = FlutterSecureStorage();
       await storage.write(key: 'token', value: token);
       await storage.write(key: 'name', value: name);

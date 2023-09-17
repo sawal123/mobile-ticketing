@@ -21,10 +21,9 @@ class _ListAppState extends State<ListApp> {
 
   Future<void> getData() async {
     var urlBase = BaseUrl().baseUrl;
-    print(urlBase);
+
     try {
       var myResponse = await http.get(Uri.parse("$urlBase/slide"));
-      // print(myResponse.body);
       if (myResponse.statusCode == 200) {
         final dynamic dataRespon = jsonDecode(myResponse.body);
         if (dataRespon is Map<dynamic, dynamic>) {
@@ -46,10 +45,21 @@ class _ListAppState extends State<ListApp> {
     }
   }
 
+  // Future<void> _refresh() async {
+  //   // Logika refresh di sini
+  //   await Future.delayed(Duration(seconds: 2));
+  //   setState(() {
+  //     // Anda dapat memperbarui data di sini jika diperlukan
+  //     items = List.generate(20, (index) => 'Refreshed Item $index');
+  //     print(items);
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     final widhtDevice = MediaQuery.of(context).size.width;
     final heighDevice = MediaQuery.of(context).size.height;
+    var urlStorage = BaseUrl().sUrl;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -72,8 +82,7 @@ class _ListAppState extends State<ListApp> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(
-                      'https://rmemanagement.online/storage/slide/' +
-                          dataSlide['gambar'],
+                      '$urlStorage/slide/' + dataSlide['gambar'],
                       loadingBuilder: (BuildContext context, Widget child,
                           ImageChunkEvent? loadingProgress) {
                         if (loadingProgress == null) {
