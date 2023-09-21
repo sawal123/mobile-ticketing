@@ -1,9 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:ticketing/particle/baseUrl.dart';
-// import 'package:provider/provider.dart';
-
 import 'package:ticketing/particle/widhtAndHeight.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,14 +21,19 @@ class _MyConfirmState extends State<MyConfirm> {
   @override
   void initState() {
     super.initState();
-
-    confirValue(valueFromFirstPage);
+    // confirValue(valueFromFirstPage);
+    if (valueFromFirstPage != null) {
+      confirValue(valueFromFirstPage!); // Gunakan ! untuk mengabaikan nullable
+    }
   }
 
   Future<Map<String, dynamic>?> confirValue(String? valueFromFirstPage) async {
+    var urlApi = BaseUrl().baseUrl;
+    var api = "$urlApi/confirm/$valueFromFirstPage";
+    // print(urlApi + api);
     try {
-      var respon = await http.get(Uri.parse(
-          'https://rmemanagement.online/api/confirm/$valueFromFirstPage'));
+      var respon = await http.get(Uri.parse(api));
+      print(respon.statusCode);
       if (respon.statusCode == 200) {
         final dynamic dataRespon = jsonDecode(respon.body);
         return dataRespon;
@@ -91,7 +93,8 @@ class _MyConfirmState extends State<MyConfirm> {
                   final event = snapshot.data?['event'];
                   final user = snapshot.data?['user'];
                   final harga = snapshot.data?['harga'];
-                  // print(harga.length);
+
+                  // print(cart);
 
                   // final userName = userData['user']?['name'];
                   return Column(
@@ -109,7 +112,7 @@ class _MyConfirmState extends State<MyConfirm> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Invoice', style: textStyle),
-                          Text('$valueFromFirstPage', style: textStyle),
+                          Text(cart['invoice'], style: textStyle),
                         ],
                       ),
                       SizedBox(height: 5),
@@ -117,7 +120,16 @@ class _MyConfirmState extends State<MyConfirm> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Konser', style: textStyle),
-                          Text(event['event'], style: textStyle),
+                          Container(
+                            width: 200,
+                            child: Wrap(
+                              children: [
+                                Text(event['event'],
+                                    textAlign: TextAlign.right,
+                                    style: textStyle)
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                       SizedBox(height: 5),
@@ -125,7 +137,7 @@ class _MyConfirmState extends State<MyConfirm> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Jumlah Ticket', style: textStyle),
-                          Text(cart['qty'], style: textStyle),
+                          Text(cart['qty'].toString(), style: textStyle),
                         ],
                       ),
                       SizedBox(height: 5),
@@ -180,53 +192,50 @@ class _MyConfirmState extends State<MyConfirm> {
                         ],
                       ),
                       SizedBox(height: 20),
-                      Container(
-                        width: width,
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              final Map<String, dynamic> data = {
-                                'konfirmasi': "1",
-                              };
+                      if (cart['konfirmasi'] == null)
+                        Container(
+                          width: width,
+                          child: ElevatedButton(
+                              onPressed: () async {
+                                final Map<String, dynamic> data = {
+                                  'konfirmasi': "1",
+                                };
 
-                              try {
-                                final inv = cart['invoice'];
-                                final String urlUpdate =
-                                    "$urlBase/status/" + inv;
-                                final responUpdate = await http.put(
-                                  Uri.parse(urlUpdate),
-                                  headers: {'Content-Type': 'application/json'},
-                                  body: jsonEncode(data),
-                                );
-                                if (responUpdate.statusCode == 200) {
-                                  print(
-                                      'Data berhasil diperbarui: ${responUpdate.body}');
-                                } else {
-                                  print('Gagal');
+                                try {
+                                  final inv = cart['invoice'];
+                                  final String urlUpdate =
+                                      "$urlBase/status/$inv";
+                                  final responUpdate = await http.put(
+                                    Uri.parse(urlUpdate),
+                                    headers: {
+                                      'Content-Type': 'application/json'
+                                    },
+                                    body: jsonEncode(data),
+                                  );
+                                  print(responUpdate.body);
+                                  if (responUpdate.statusCode == 200) {
+                                    print(
+                                        'Data berhasil diperbarui: ${responUpdate.body}');
+                                  } else {
+                                    print(responUpdate.statusCode);
+                                  }
+                                } catch (e) {
+                                  print(e);
                                 }
-                              } catch (e) {
-                                print(e);
-                              }
-                              // Navigator.of(context).pop("$valueFromFirstPage");
-                              // Navigator.pushReplacement(context, '/confirm',
-                              //     arguments: "$valueFromFirstPage");
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => MyConfirm(),
-                                  settings: RouteSettings(
-                                    arguments: valueFromFirstPage,
+                                // Navigator.of(context).pop("$valueFromFirstPage");
+                                // Navigator.pushReplacement(context, '/confirm',
+                                //     arguments: "$valueFromFirstPage");
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => MyConfirm(),
+                                    settings: RouteSettings(
+                                      arguments: valueFromFirstPage,
+                                    ),
                                   ),
-                                ),
-                              );
-                              // Navigator.of(context).pushReplacement(
-                              //   MaterialPageRoute(
-                              //     builder: (context) => MyConfirm(
-                              //       argument: "$valueFromFirstPage",
-                              //     ),
-                              //   ),
-                              // );
-                            },
-                            child: Text('CONFIRM')),
-                      )
+                                );
+                              },
+                              child: Text('CONFIRMASI')),
+                        ),
                     ],
                   );
                 }

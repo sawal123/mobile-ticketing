@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       });
-      print(myResponse.body);
+      // print(myResponse.body);
       if (myResponse.statusCode == 200) {
         final dynamic dataRespon = jsonDecode(myResponse.body);
         if (dataRespon is Map<dynamic, dynamic>) {
@@ -174,24 +174,24 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 10,
                 ),
-                Container(
-                  width: widhtDevice,
-                  height: 100,
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 234, 5, 55),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image(
-                      image: NetworkImage(
-                          // '$storage/cover/EIKtsB1B850TG3el_1694190840_880cac8eeb54a5e128c3887292464f66c371c97b.png.webp'),
-                          '$storage/cover/_1693572896_880cac8eeb54a5e128c3887292464f66c371c97b.png.webp'),
-                      width: widhtDevice,
-                      height: heighDevice,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                // Container(
+                //   width: widhtDevice,
+                //   height: 100,
+                //   decoration: BoxDecoration(
+                //       color: Color.fromARGB(255, 234, 5, 55),
+                //       borderRadius: BorderRadius.circular(10)),
+                //   child: ClipRRect(
+                //     borderRadius: BorderRadius.circular(10),
+                //     child: Image(
+                //       image: NetworkImage(
+                //           // '$storage/cover/EIKtsB1B850TG3el_1694190840_880cac8eeb54a5e128c3887292464f66c371c97b.png.webp'),
+                //           '$storage/cover/_1693572896_880cac8eeb54a5e128c3887292464f66c371c97b.png.webp'),
+                //       width: widhtDevice,
+                //       height: heighDevice,
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                // ),
 
                 // Image.network('/assets/slide1.jpg'),
 
@@ -199,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                   height: 20,
                 ),
                 const Text(
-                  'Menu Ticketing',
+                  'Menu',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 const SizedBox(
@@ -209,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, '/list');
+                        Navigator.pushNamed(context, '/events');
                       },
                       child: Card(
                         child: ListTile(

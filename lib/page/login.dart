@@ -68,7 +68,7 @@ class _LoginAppState extends State<LoginApp> {
               ),
               Image.asset(
                 'assets/images/logo.png',
-                width: 150,
+                width: 250,
               ),
               SizedBox(
                 height: 30,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticketing/particle/baseUrl.dart';
 
 class InputCode extends StatefulWidget {
   const InputCode({super.key});
@@ -10,6 +11,7 @@ class InputCode extends StatefulWidget {
 class _InputCodeState extends State<InputCode> {
   String url = '';
   String _value = '';
+  final urlApi = BaseUrl().baseUrl;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,8 +53,7 @@ class _InputCodeState extends State<InputCode> {
                             arguments: _value);
 
                         setState(() {
-                          url = 'https://rmemanagement.online/api/confirm/' +
-                              _value;
+                          url = '$urlApi/confirm/$_value';
                         });
                         print(url);
                       },

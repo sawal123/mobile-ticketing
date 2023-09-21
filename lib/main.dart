@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticketing/page/event.dart';
 import 'package:ticketing/page/home.dart';
 import 'package:ticketing/page/inputcode.dart';
 import 'package:ticketing/page/list.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // static const String inputRoute = '/input';
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       // home: HomePage(),
       initialRoute: '/login',
       routes: {
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/scan': (context) => QRViewExample(),
         '/confirm': (context) => MyConfirm(),
         '/list': (context) => MyList(),
+        '/events': (context) => MyEvent(),
       },
     );
   }
