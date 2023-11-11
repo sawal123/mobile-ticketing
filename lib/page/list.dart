@@ -118,7 +118,7 @@ class _MyListState extends State<MyList> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return SpinKitFadingFour(
+                            return SpinKitDoubleBounce(
                               color: Colors.blue, // Atur warna animasi
                               size: 50.0, // Atur ukuran animasi
                             );

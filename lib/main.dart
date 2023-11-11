@@ -6,6 +6,7 @@ import 'package:ticketing/page/list.dart';
 import 'package:ticketing/page/login.dart';
 import 'package:ticketing/page/scanbarcode.dart';
 import 'package:ticketing/page/confirm.dart';
+import 'package:ticketing/page/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +21,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: HomePage(),
-      initialRoute: '/login',
+      initialRoute: '/splash',
       routes: {
+        '/splash': (context) => SplashScreen(),
         '/login': (context) => LoginApp(),
         '/': (context) => HomePage(),
         '/input': (context) => InputCode(),
