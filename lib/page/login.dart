@@ -6,7 +6,6 @@ import 'package:ticketing/page/home.dart';
 import 'package:ticketing/particle/baseUrl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
 import 'dart:convert';
 
 class LoginApp extends StatefulWidget {
@@ -24,9 +23,9 @@ class _LoginAppState extends State<LoginApp> {
   var urlBase = BaseUrl().baseUrl;
 
   Future<void> _login() async {
-    final responLogin = await http.post(Uri.parse('$urlBase/login'), body: {
-      'email': emailController.text,
-      'password': passwordController.text,
+    final responLogin = await http.post(Uri.parse('$urlBase/login'),  body: {
+      "email": emailController.text,
+      "password": passwordController.text,
     });
     // print(responLogin.statusCode);
     if (responLogin.statusCode == 200) {

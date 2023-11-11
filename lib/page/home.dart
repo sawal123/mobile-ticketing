@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             data = slideData;
             myname = name!;
-            // print(data);
+            
           });
         } else {
           print('Response is not a Map');
@@ -58,7 +58,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final widhtDevice = MediaQuery.of(context).size.width;
     final heighDevice = MediaQuery.of(context).size.height;
-    final storage = BaseUrl().sUrl;
     var urlStorage = BaseUrl().sUrl;
 
     // print(apiService);

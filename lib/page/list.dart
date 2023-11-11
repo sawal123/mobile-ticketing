@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ticketing/particle/baseUrl.dart';
 import 'package:ticketing/particle/widhtAndHeight.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class MyList extends StatefulWidget {
   const MyList({super.key});
@@ -117,8 +118,10 @@ class _MyListState extends State<MyList> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return Transform.scale(
-                                scale: 0.2, child: CircularProgressIndicator());
+                            return SpinKitFadingFour(
+                              color: Colors.blue, // Atur warna animasi
+                              size: 50.0, // Atur ukuran animasi
+                            );
                           } else {
                             // final cart = snapshot.data?['cart'];
                             // final cart = snapshot.data;

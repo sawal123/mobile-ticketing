@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ticketing/particle/baseUrl.dart';
 import 'package:ticketing/particle/widhtAndHeight.dart';
 import 'package:http/http.dart' as http;
@@ -32,7 +33,12 @@ class _MyEventState extends State<MyEvent> {
 
   Future<void> getEvent() async {
     final urlBase = BaseUrl().baseUrl;
-    var responApi = await http.get(Uri.parse("$urlBase/listEvent"));
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var responApi = await http.get(Uri.parse("$urlBase/listEvent"),headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      });
     // print(responApi.body);
     if (responApi.statusCode == 200) {
       final dynamic event = jsonDecode(responApi.body);
