@@ -45,22 +45,27 @@ class _InputCodeState extends State<InputCode> {
                     border: OutlineInputBorder(),
                   ),
                 ),
-                FractionallySizedBox(
-                  widthFactor: 1,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/confirm',
-                            arguments: _value);
-
-                        setState(() {
-                          url = '$urlApi/confirm/$_value';
-                        });
-                        print(url);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          // minimumSize: Size(, 40),
-                          ),
-                      child: Text('Sumbit')),
+                SizedBox(height: 10,),
+                Container(
+                  height: 50,
+                  child: FractionallySizedBox(
+                    widthFactor: 1,
+                    // heightFactor: 1,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/confirm',
+                              arguments: _value);
+                
+                          setState(() {
+                            url = '$urlApi/confirm/$_value';
+                          });
+                          print(url);
+                        },
+                        style: ElevatedButton.styleFrom(
+                            // minimumSize: Size(, 40),
+                            ),
+                        child: Text('Check Code')),
+                  ),
                 ),
                 SizedBox(
                   height: 10,

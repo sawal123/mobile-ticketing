@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:ticketing/particle/baseUrl.dart';
 import 'package:ticketing/particle/widhtAndHeight.dart';
 import 'package:http/http.dart' as http;
@@ -80,10 +81,9 @@ class _MyConfirmState extends State<MyConfirm> {
               future: confirValue(valueFromFirstPage),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Container(
-                    width: width / 5,
-                    height: height / 5,
-                    child: CircularProgressIndicator(),
+                  return SpinKitWave(
+                    color: Colors.blue, // Atur warna animasi
+                    size: 50.0, // Atur ukuran animasi
                   );
                 } else if (snapshot.hasError) {
                   return Text('Error : ${snapshot.error}');

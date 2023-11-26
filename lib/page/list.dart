@@ -112,7 +112,6 @@ class _MyListState extends State<MyList> {
                   Container(
                     width: width,
                     height: heigth / 1.4,
-                    // padding: EdgeInsets.all(10),
                     child: FutureBuilder(
                         future: verfikasi(arguments),
                         builder: (context, snapshot) {
@@ -123,9 +122,6 @@ class _MyListState extends State<MyList> {
                               size: 50.0, // Atur ukuran animasi
                             );
                           } else {
-                            // final cart = snapshot.data?['cart'];
-                            // final cart = snapshot.data;
-                            // print(cart);
                             if (data.isEmpty) {
                               return Center(child: Text("Tidak Ada Data"));
                             }
