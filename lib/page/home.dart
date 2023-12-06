@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ticketing/particle/baseUrl.dart';
+import 'package:Gotik/particle/baseUrl.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   List<String> items = List.generate(20, (index) => 'Item $index');
   List data = [];
   String myname = '';
+  String myToken = '';
   void initState() {
     super.initState();
     getData();
@@ -41,6 +42,7 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             data = slideData;
             myname = name!;
+            // myToken = token!;
             
           });
         } else {

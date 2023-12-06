@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:ticketing/particle/baseUrl.dart';
+import 'package:Gotik/particle/baseUrl.dart';
 
 class ListApp extends StatefulWidget {
   const ListApp({super.key});

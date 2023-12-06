@@ -620,13 +620,13 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "ticketing",
+      "name": "Gotik",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-11-11T17:02:03.369231Z",
+  "generated": "2023-11-26T10:26:55.102042Z",
   "generator": "pub",
   "generatorVersion": "3.1.3"
 }

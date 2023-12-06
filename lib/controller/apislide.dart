@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:ticketing/model/slide.dart';
+import 'package:Gotik/model/slide.dart';
 
 class Repository {
   final _baseUrl = 'https://jsonplaceholder.typicode.com/posts';

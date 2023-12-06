@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ticketing/particle/baseUrl.dart';
+import 'package:Gotik/particle/baseUrl.dart';
 
 class InputCode extends StatefulWidget {
   const InputCode({super.key});

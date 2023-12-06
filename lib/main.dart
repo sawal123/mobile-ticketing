@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ticketing/page/event.dart';
-import 'package:ticketing/page/home.dart';
-import 'package:ticketing/page/inputcode.dart';
-import 'package:ticketing/page/list.dart';
-import 'package:ticketing/page/login.dart';
-import 'package:ticketing/page/scanbarcode.dart';
-import 'package:ticketing/page/confirm.dart';
-import 'package:ticketing/page/splash.dart';
+import 'package:Gotik/page/event.dart';
+import 'package:Gotik/page/home.dart';
+import 'package:Gotik/page/inputcode.dart';
+import 'package:Gotik/page/list.dart';
+import 'package:Gotik/page/login.dart';
+import 'package:Gotik/page/scanbarcode.dart';
+import 'package:Gotik/page/confirm.dart';
+import 'package:Gotik/page/splash.dart';
 
 void main() {
   runApp(const MyApp());

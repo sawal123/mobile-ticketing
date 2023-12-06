@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:ticketing/particle/baseUrl.dart';
-import 'package:ticketing/particle/widhtAndHeight.dart';
+import 'package:Gotik/particle/baseUrl.dart';
+import 'package:Gotik/particle/widhtAndHeight.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyList extends StatefulWidget {
   const MyList({super.key});
@@ -27,8 +28,16 @@ class _MyListState extends State<MyList> {
   }
 
   Future<void> verfikasi(String? arguments) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
     final urlBase = BaseUrl().baseUrl;
-    final respon = await http.get(Uri.parse("$urlBase/verfikasi/$arguments"));
+    final respon = await http.get(
+      Uri.parse("$urlBase/verfikasi/$arguments"),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
     if (respon.statusCode == 200) {
       final Map<String, dynamic> list = jsonDecode(respon.body);
       data = list["cart"];

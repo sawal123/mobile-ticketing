@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:ticketing/particle/baseUrl.dart';
-import 'package:ticketing/particle/widhtAndHeight.dart';
+import 'package:Gotik/particle/baseUrl.dart';
+import 'package:Gotik/particle/widhtAndHeight.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyConfirm extends StatefulWidget {
   const MyConfirm({
@@ -18,6 +19,7 @@ class MyConfirm extends StatefulWidget {
 
 class _MyConfirmState extends State<MyConfirm> {
   // List cart = [];
+  String myToken = '';
   String? valueFromFirstPage;
   @override
   void initState() {
@@ -29,20 +31,37 @@ class _MyConfirmState extends State<MyConfirm> {
   }
 
   Future<Map<String, dynamic>?> confirValue(String? valueFromFirstPage) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
     var urlApi = BaseUrl().baseUrl;
     var api = "$urlApi/confirm/$valueFromFirstPage";
-    // print(urlApi + api);
+    print(token);
+
     try {
-      var respon = await http.get(Uri.parse(api));
+      var respon = await http.get(
+        Uri.parse(api),
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
       print(respon.statusCode);
       if (respon.statusCode == 200) {
         final dynamic dataRespon = jsonDecode(respon.body);
+        // if (dataRespon is Map<dynamic, dynamic>) {
+        //   setState(() {
+        //     myToken = token!;
+        //   });
+        // }
         return dataRespon;
+      } else if (respon.statusCode == 429) {
+        // Handle rate limiting (retry after some time)
+        print('Rate Limited. Retry after some time.');
+        // Implement retry logic here if needed
       } else {
         print('Error: ${respon.statusCode}');
       }
     } catch (e) {
-      // print(e);
+      print('$e');
     }
     return null;
   }
@@ -88,7 +107,8 @@ class _MyConfirmState extends State<MyConfirm> {
                 } else if (snapshot.hasError) {
                   return Text('Error : ${snapshot.error}');
                 } else if (!snapshot.hasData || snapshot.data == null) {
-                  return Text('Data tidak tersedia'); // Atau widget lainnya
+                  return Text(
+                      'Data ${valueFromFirstPage} tidak tersedia '); // Atau widget lainnya
                 } else {
                   final cart = snapshot.data?['cart'];
                   final event = snapshot.data?['event'];
@@ -198,18 +218,23 @@ class _MyConfirmState extends State<MyConfirm> {
                           width: width,
                           child: ElevatedButton(
                               onPressed: () async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                final token = prefs.getString('token');
                                 final Map<String, dynamic> data = {
                                   'konfirmasi': "1",
                                 };
 
                                 try {
                                   final inv = cart['invoice'];
+                                  // print(myToken);
                                   final String urlUpdate =
                                       "$urlBase/status/$inv";
                                   final responUpdate = await http.put(
                                     Uri.parse(urlUpdate),
                                     headers: {
-                                      'Content-Type': 'application/json'
+                                      'Content-Type': 'application/json',
+                                      'Authorization': 'Bearer $token',
                                     },
                                     body: jsonEncode(data),
                                   );
