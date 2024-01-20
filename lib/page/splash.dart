@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,13 +12,27 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    checkLoginStatus();
+  }
+
+  void checkLoginStatus() async {
+    // Move SharedPreferences logic inside a function
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    // final name = prefs.getString('name');
+    print(token);
+
     Timer(
-      Duration(
-          seconds:
-              2), // Sesuaikan dengan durasi tampilan splash yang diinginkan
+      const Duration(seconds: 2),
       () {
-        Navigator.pushReplacementNamed(
-            context, '/login'); // Ganti dengan rute utama aplikasi
+        // Check if the token is present
+        if (token != null) {
+          // If token is present, navigate to the home page
+          Navigator.pushReplacementNamed(context, '/');
+        } else {
+          // If token is not present, navigate to the login page
+          Navigator.pushReplacementNamed(context, '/login');
+        }
       },
     );
   }
